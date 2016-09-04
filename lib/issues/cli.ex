@@ -12,6 +12,7 @@ defmodule Issues.CLI do
     argv
     |> parse_args
     |> process
+    |> sort_into_ascending_order
   end
 
   @doc """
@@ -60,5 +61,11 @@ defmodule Issues.CLI do
     message = Map.get(error, "message")
     IO.puts "Error fetching from Github: #{message}"
     System.halt(2)
+  end
+
+  def sort_into_ascending_order(list_of_issues) do
+    Enum.sort(list_of_issues, fn (i1, i2) ->
+      i1["created_at"] <= i2["created_at"]
+    end)
   end
 end
