@@ -1,4 +1,8 @@
-defmodule Issues.TableFormatter do
+# My own version of the table formatter.
+# It works :-), but the rest of the chapter (test, etc)
+# relies on the code matching the example from the book
+#
+defmodule Issues.MyTableFormatter do
   def print_table_for_columns(raw_rows, headers) do
     rows = filtered_rows(raw_rows, headers)
 
