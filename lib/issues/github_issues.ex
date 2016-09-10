@@ -24,4 +24,11 @@ defmodule Issues.GithubIssues do
     Logger.error "Error #{status} returned"
     { :error, Poison.Parser.parse!(body) }
   end
+
+  # no connection or DNS
+  #
+  def handle_response({ :error, %{ reason: reason } }) do
+    Logger.error "Error #{reason} returned"
+    { :error, %{ "message" => reason } }
+  end
 end
